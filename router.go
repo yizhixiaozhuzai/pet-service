@@ -3,13 +3,18 @@
 package main
 
 import (
+	"context"
+
+	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"pet-service/biz/handler"
 )
 
-// customizeRegister registers customize routers.
+// customizedRegister registers customize routers.
 func customizedRegister(r *server.Hertz) {
-	r.GET("/ping", handler.Ping)
+	r.GET("/ping", func(ctx context.Context, c *app.RequestContext) {
+		handler.Ping(ctx, c)
+	})
 
 	// your code ...
 }

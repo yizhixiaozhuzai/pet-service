@@ -1,37 +1,41 @@
-*.o
-*.a
-*.so
-_obj
-_test
-*.[568vq]
-[568vq].out
-*.cgo1.go
-*.cgo2.c
-_cgo_defun.c
-_cgo_gotypes.go
-_cgo_export.*
-_testmain.go
+# Binaries for programs and plugins
 *.exe
 *.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
 *.test
-*.prof
-*.rar
-*.zip
-*.gz
-*.psd
-*.bmd
-*.cfg
-*.pptx
+
+# Output of the go coverage tool
+*.out
+
+# Dependency directories
+vendor/
+
+# Go workspace file
+go.work
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Log files
+logs/
 *.log
-*nohup.out
-*settings.pyc
-*.sublime-project
-*.sublime-workspace
-!.gitkeep
+
+# Environment variables
+.env
+.env.local
+
+# Generated files
+biz/query/
+*.gen.go
+
+# OS
 .DS_Store
-/.idea
-/.vscode
-/output
-*.local.yml
-dumped_hertz_remote_config.json
-		  
+Thumbs.db
