@@ -3,6 +3,7 @@ package middleware
 import (
 	"context"
 	"strings"
+	"time"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
@@ -14,7 +15,7 @@ var jwtManager *jwt.JWTManager
 
 // InitJWTManager 初始化JWT管理器
 func InitJWTManager(secretKey string, tokenDuration int) {
-	jwtManager = jwt.NewJWTManager(secretKey, int64(tokenDuration)*int64(1e9))
+	jwtManager = jwt.NewJWTManager(secretKey, time.Duration(int64(tokenDuration)*int64(1e9)))
 }
 
 // GetJWTManager 获取JWT管理器
@@ -26,7 +27,7 @@ func GetJWTManager() *jwt.JWTManager {
 func JWTAuthMiddleware() app.HandlerFunc {
 	return func(ctx context.Context, c *app.RequestContext) {
 		// 从Header获取token
-		authHeader := c.GetHeader("Authorization")
+		authHeader := string(c.GetHeader("Authorization"))
 		if authHeader == "" {
 			logger.Warn(ctx, "未携带认证token")
 			c.JSON(consts.StatusUnauthorized, map[string]interface{}{
